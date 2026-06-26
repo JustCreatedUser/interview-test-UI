@@ -1,0 +1,50 @@
+/*
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+*/
+@import "tailwindcss";
+@theme {
+  --color-primary: #fefefe;
+  --color-blue: #4690e2;
+  --color-gray-medium: #7F858D;
+  --color-gray-light: #F1F5F8;
+  --color-gray-dark: #343434;
+  --color-gray-lightest: #AEB6CE33;
+}
+.nav-el {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  height: 100%;
+  padding-inline: 20px;
+  border-top-color: transparent;
+  border-top-width: 2px;
+  border-top-style: solid;
+  opacity: 0.5;
+}
+.nav-el:hover, .nav-el.nav-el-active {
+  background-color: var(--color-gray-light);
+  opacity: 1
+}
+.nav-el.nav-el-active {
+  border-top-color: var(--color-blue);
+}
+.nav-el::after {
+  content: '';
+  width: 1px;
+  height: 16px;
+  background-color: var(--border-clr);
+}
