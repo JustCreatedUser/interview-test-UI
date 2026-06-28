@@ -1,7 +1,7 @@
 import "./App.css"
 import { Routes, Route as RouterRoute }  from "react-router";
 
-import NavigationComponent from "./components/Navigation.tsx"
+import NavigationComponent from "./components/Navigation/Main"
 
 export default function Home() {
   return (
@@ -10,9 +10,7 @@ export default function Home() {
       <aside className="border-gray-lightest h-screen w-61 border"></aside>
       <div className="flex flex-col h-screen w-full">
         <header className="h-12.5 border border-gray-lightest mt-17.5">
-          <nav aria-label="Primary navigation" className="h-full flex items-center">
           <NavigationComponent/>
-          </nav>
         </header>
         <main className="p-5 h-screen w-full bg-gray-light">
           <div className="h-full bg-primary rounded-2xl p-5">
