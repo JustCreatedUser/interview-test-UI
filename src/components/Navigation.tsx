@@ -2,6 +2,7 @@ import { useState } from "react";
 import { OverflowList } from "react-responsive-overflow-list"
 import { Link, useLocation } from "react-router";
 import {useSortable} from '@dnd-kit/react/sortable';
+import {STORAGE_NAV_ORDER as LOCALSTORAGE_NAV_ORDER} from "../constants"
 
 type LinkContentType = {name: string, svg_name: string; path: string; id: number}
 var navigationElements: LinkContentType[] = [
@@ -19,7 +20,7 @@ var navigationElements: LinkContentType[] = [
   { name: "Auswahllisten", svg_name: "fi-rs-list", path: "selection", id: 11},
 ]
 function restoreSavedNavOrder(): number[] | null {
-  var savedOrder = localStorage.getItem("items-order");
+  var savedOrder = localStorage.getItem(LOCALSTORAGE_NAV_ORDER);
   if(
     !savedOrder
     ||savedOrder[0]!='['
@@ -38,14 +39,13 @@ function restoreSavedNavOrder(): number[] | null {
   return parsedSavedOrder;
 };
 var navigationOrder: number[] = restoreSavedNavOrder() || [...new Array(navigationElements.length).keys()]; 
-console.log(navigationOrder)
 function replaceCurrentLink(orderedLinks: number[], setLinks: (links: number[])=>void, link: number) {
   var newArr: number[] = [link];
   for(var el of orderedLinks) {
     if(el==link) continue;
     newArr.push(el)
   } 
-  console.log(orderedLinks, newArr)
+  localStorage.setItem(LOCALSTORAGE_NAV_ORDER, JSON.stringify(newArr));
   setLinks(newArr)
 }
 function overflowButton(orderedLinks: number[], items: number[], setLinks: (args: number[])=>void) {
